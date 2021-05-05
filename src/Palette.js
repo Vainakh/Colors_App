@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import ColorBox from './ColorBox';
+import 'rc-slider/assets/index.css';
 import './Palette.css';
 import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+
 
 
 class Palette extends Component {
@@ -24,18 +25,63 @@ class Palette extends Component {
     ))
     return (
       <div className="Palette">
-      <Slider
-        defaultValue={level}
-        min={100}
-        max={900}
-        step={100}
-        onAfterChange={this.changeLevel}
-      />
-      {/*Navbar goes here*/}
-        <div className="Palette-colors">
-        {colorBoxes}
+        <div className="slider">
+          <Slider
+            defaultValue={level}
+            min={100}
+            max={900}
+            step={100}
+            onAfterChange={this.changeLevel}
+            railStyle={{height: "8px"}}
+            handleStyle={{
+              backgroundColor: "green",
+              outline: "none",
+              border: "2px solid green",
+              boxShadow: "none",
+              width: "13px",
+              height: "13px",
+              marginLeft: "-7px",
+              marginRight: "-2px"
+
+            }}
+            activeHandleStyle={{
+              backgroundColor: "green",
+              outline: "none",
+              border: "2px solid green",
+              boxShadow: "none",
+              width: "13px",
+              height: "13px",
+              marginLeft: "-7px",
+              marginRight: "-2px"
+            }}
+            hoverHandleStyle={{
+              backgroundColor: "green",
+              outline: "none",
+              border: "2px solid green",
+              boxShadow: "none",
+              width: "13px",
+              height: "13px",
+              marginLeft: "-7px",
+              marginRight: "-2px"
+            }}
+            focusHandleStyle={{
+              backgroundColor: "green",
+              outline: "none",
+              border: "2px solid green",
+              boxShadow: "none",
+              width: "13px",
+              height: "13px",
+              marginLeft: "-7px",
+              marginRight: "-3px"
+            }}
+            trackStyle={{backgroundColor: "transparent"}}
+          />
         </div>
-        {/* footer eventually */}
+        {/*Navbar goes here*/}
+          <div className="Palette-colors">
+          {colorBoxes}
+          </div>
+          {/* footer eventually */}
       </div>
     )
   }
