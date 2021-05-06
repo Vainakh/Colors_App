@@ -4,20 +4,30 @@ import MenuItem from '@material-ui/core/MenuItem';
 import 'rc-slider/assets/index.css';
 import Slider from 'rc-slider';
 import './Navbar.css';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 class Navbar extends Component {
   constructor() {
     super();
 
-    this.state = { format: "hex" };
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      format: "hex",
+      open: false
+    };
+    this.handleFormatChange = this.handleFormatChange.bind(this);
+    this.closeSnackbar = this.closeSnackbar.bind(this);
   }
-  handleChange(event) {
-    this.setState({format: event.target.value});
+  handleFormatChange(event) {
+    this.setState({format: event.target.value, open: true});
     this.props.handleChange(event.target.value);
   }
+  closeSnackbar(){
+    this.setState({open: false});
+  }
   render() {
-    const {level, changeLevel, handleChange} = this.props;
+    const {level, changeLevel} = this.props;
     const {format} = this.state;
     return (
       <header className="Navbar">
@@ -81,12 +91,35 @@ class Navbar extends Component {
         </div>
         <div className='select-container'>
           <Select value={format}
-                  onChange={this.handleChange}>
+                  onChange={this.handleFormatChange}>
             <MenuItem value='hex'>HEX - #ffffff</MenuItem>
             <MenuItem value='rgb'>RGB - rgb 255, 255, 255</MenuItem>
             <MenuItem value='rgba'>RGBA - rgba255, 255, 255, 1.0</MenuItem>
           </Select>
         </div>
+        <Snackbar
+          onClose={this.closeSnackbar}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left'
+          }}
+          open={this.state.open}
+          autoHideDuration={3000}
+          message={<span id="message-id">Format Changed To {format.toUpperCase()}</span>}
+          ContentProps={{
+            "aria-describedby": "message-id"
+          }}
+          action={[
+            <IconButton
+              onClick={this.closeSnackbar}
+              color='inherit'
+              key='close'
+              aria-label='close'
+              >
+              <CloseIcon/>
+            </IconButton>
+          ]}
+          />
       </header>
     )
   }
