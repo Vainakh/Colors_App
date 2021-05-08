@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './PaletteList.css';
-import {Link} from 'react-router-dom';
 import MiniPalette from './MiniPalette';
 import { withStyles } from '@material-ui/core/styles';
 
