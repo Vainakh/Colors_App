@@ -38,6 +38,5 @@ export default {
     margin: "0 auto",
     position: "relative",
     marginBottom: "-4.5px",
-
   }
 }
