@@ -15,7 +15,7 @@ import {withStyles} from '@material-ui/styles';
 import {ChromePicker} from 'react-color';
 import Button from "@material-ui/core/Button";
 import DraggableColorBox from './DraggableColorBox';
-
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const drawerWidth = 400;
 
@@ -83,6 +83,7 @@ function NewPaletteForm() {
   const [open, setOpen] = React.useState(false);
   const [currentColor, setCurrentColor] = React.useState("plum");
   const [colorsArray, setColorsArray] = useState(["purple", "#e93333"]);
+  const [newName, setNewName] = useState("");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,29 +101,34 @@ function NewPaletteForm() {
     setColorsArray(colorsArray => [...colorsArray, newColor]);
   };
 
+  const handleChange = (event) => {
+    console.log(event.target.value);
+    setNewName(event.target.value);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open,
-        })}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
-          <Button></Button>
-        </Toolbar>
-      </AppBar>
+        <AppBar
+          position="fixed"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}>
+              <MenuIcon />
+            </IconButton>
+              <Typography variant="h6" noWrap>
+                Persistent drawer
+              </Typography>
+            <Button></Button>
+          </Toolbar>
+        </AppBar>
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -147,12 +153,19 @@ function NewPaletteForm() {
         <ChromePicker
           color={currentColor}
           onChangeComplete={updateCurrentColor}/>
+        <ValidatorForm>
+          <TextValidator
+            value={newName}
+            onChange={handleChange}
+            />
+        </ValidatorForm>
         <Button
-          variant='contained'
-          color='primary'
-          style={{backgroundColor: currentColor}}
-          onClick={() => addNewColor(currentColor)}
-          >Add Color</Button>
+            variant='contained'
+            color='primary'
+            style={{backgroundColor: currentColor}}
+            onClick={() => addNewColor(currentColor)}
+            >Add Color
+          </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {

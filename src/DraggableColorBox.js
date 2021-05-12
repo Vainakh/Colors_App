@@ -1,5 +1,7 @@
 import React from 'react';
 import {withStyles} from '@material-ui/styles';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 
 const styles = {
   root: {
