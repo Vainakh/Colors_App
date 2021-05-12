@@ -80,10 +80,7 @@ function NewPaletteForm() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [currentColor, setCurrentColor] = React.useState("plum");
-
-  const updateCurrentColor = (currentColor) => {
-     setCurrentColor(currentColor.hex);
-  }
+  const [colorsArray, setColorsArray] = useState(["purple", "#e93333"]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -91,6 +88,14 @@ function NewPaletteForm() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const updateCurrentColor = (currentColor) => {
+    setCurrentColor(currentColor.hex);
+  };
+
+  const addNewColor = (newColor) => {
+    setColorsArray(colorsArray => [...colorsArray, newColor]);
   };
 
   return (
@@ -144,6 +149,7 @@ function NewPaletteForm() {
           variant='contained'
           color='primary'
           style={{backgroundColor: currentColor}}
+          onClick={() => addNewColor(currentColor)}
           >Add Color</Button>
       </Drawer>
       <main
@@ -151,14 +157,18 @@ function NewPaletteForm() {
           [classes.contentShift]: open,
         })}>
         <div className={classes.drawerHeader} />
+          <ul>
+            {colorsArray.map(color => (
+              <li style={{backgroundColor: color}}>{color}</li>
+            ))}
+          </ul>
         </main>
     </div>
   );
 }
 
-
 export default withStyles(useStyles,{withTheme: true})(NewPaletteForm);
 
-/////////////////////////////////////////////////////////////////////////
+
 
 
