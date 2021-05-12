@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -79,6 +79,11 @@ function NewPaletteForm() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [currentColor, setCurrentColor] = React.useState("plum");
+
+  const updateCurrentColor = (currentColor) => {
+     setCurrentColor(currentColor.hex);
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -95,16 +100,14 @@ function NewPaletteForm() {
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
-        })}
-      >
+        })}>
         <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
+            className={clsx(classes.menuButton, open && classes.hide)}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
@@ -120,8 +123,7 @@ function NewPaletteForm() {
         open={open}
         classes={{
           paper: classes.drawerPaper,
-        }}
-      >
+        }}>
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
@@ -136,18 +138,19 @@ function NewPaletteForm() {
             <Button variant='contained' color='primary'>Random Color</Button>
           </div>
         <ChromePicker
-          color="purple"
-          onChangeComplete={(newColor) => console.log(newColor)}/>
-        <Button variant='contained' color='primary'>Add Color</Button>
-
+          color={currentColor}
+          onChangeComplete={updateCurrentColor}/>
+        <Button
+          variant='contained'
+          color='primary'
+          style={{backgroundColor: currentColor}}
+          >Add Color</Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
-        })}
-      >
+        })}>
         <div className={classes.drawerHeader} />
-
         </main>
     </div>
   );
