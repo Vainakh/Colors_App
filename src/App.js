@@ -8,11 +8,19 @@ import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 
 class App extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = { palettes: seedColors }
+    this.savePalette = this.savePalette.bind(this);
+    this.findPalette = this.findPalette.bind(this);
+  }
   findPalette(id) {
-    return seedColors.find(function(palette) {
+    return this.state.palettes.find(function(palette) {
       return palette.id === id
     })
+  }
+  savePalette(newPalette) {
+    this.setState({ palettes: [...this.state.palettes, newPalette]});
   }
   render() {
     return (
@@ -21,7 +29,7 @@ class App extends Component {
           <Route
             exact
             path="/palette/new"
-            render={() => <NewPaletteForm/>}/>
+            render={(routeProps) => <NewPaletteForm savePalette={this.savePalette}{...routeProps}/>}/>
           <Route
               exact
               path='/palette/:paletteId/:colorId'
@@ -36,7 +44,7 @@ class App extends Component {
             exact
             path='/'
             render={(routeProps) => <PaletteList
-              palettes={seedColors}
+              palettes={this.state.palettes}
             {...routeProps}
             />}/>
           <Route
@@ -48,9 +56,6 @@ class App extends Component {
                 generatePalette(this.findPalette(routeProps.match.params.id))}
             />}/>
         </Switch>
-        {/* <div>
-          <Palette palette={generatePalette(seedColors[4])}/>
-        </div> */}
       </div>
     );
   }

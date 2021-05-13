@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function NewPaletteForm() {
+function NewPaletteForm(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -123,17 +123,27 @@ function NewPaletteForm() {
     setNewName(event.target.value);
   };
 
-
+  const handleSubmit = () => {
+    let newName = "New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase(),
+      colors: colorsArray
+    }
+    props.savePalette(newPalette);
+    props.history.push('/')
+  }
 
   return (
     <div className={classes.root}>
       <CssBaseline />
         <AppBar
           position="fixed"
+          color='default'
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open,
           })}>
-          <Toolbar>
+          <Toolbar >
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -142,9 +152,15 @@ function NewPaletteForm() {
               className={clsx(classes.menuButton, open && classes.hide)}>
               <MenuIcon />
             </IconButton>
-              <Typography variant="h6" noWrap>
+              <Typography variant="h6" color='inherit' noWrap>
                 Persistent drawer
               </Typography>
+              <Button
+                variant='contained'
+                color='primary'
+                onClick={handleSubmit}>
+                Save Palette
+                </Button>
             <Button></Button>
           </Toolbar>
         </AppBar>
@@ -192,7 +208,6 @@ function NewPaletteForm() {
             type='submit'
             color='primary'
             style={{backgroundColor: currentColor}}
-            // onClick={() => addNewColor(currentColor)}
             >Add Color
           </Button>
         </ValidatorForm>
@@ -206,7 +221,9 @@ function NewPaletteForm() {
             {colorsArray.map(color => (
               <DraggableColorBox
                 color={color.color}
-                name={color.name}/>
+                name={color.name}
+                key={color.name}
+                />
             ))}
         </main>
     </div>
