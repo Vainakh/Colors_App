@@ -140,6 +140,11 @@ function NewPaletteForm(props) {
     props.savePalette(newPalette);
     props.history.push('/')
   }
+  const removeColor = (colorName) => {
+    setColorsArray(
+      colorsArray.filter(color => color.name !== colorName)
+    )
+  }
 
   return (
     <div className={classes.root}>
@@ -175,8 +180,8 @@ function NewPaletteForm(props) {
                     value={newPaletteName}
                     name="newPaletteName"
                     onChange={handlePaletteChange}
-                    validator={["required"]}
-                    errorMessages={["Enter Palette Name"]}
+                    // validator={["required"]}
+                    // errorMessages={["Enter Palette Name"]}
                     />
                   {/* 1 */}
                 <Button
@@ -231,15 +236,14 @@ function NewPaletteForm(props) {
               'Color already used'
               ]}
             />
-            <Button
+          <Button
             variant='contained'
             type='submit'
             color='primary'
             style={{backgroundColor: currentColor}}
-            >Add Color
+          >Add Color
           </Button>
         </ValidatorForm>
-
       </Drawer>
       <main
         className={clsx(classes.content, {
@@ -251,6 +255,7 @@ function NewPaletteForm(props) {
                 color={color.color}
                 name={color.name}
                 key={color.name}
+                handleClick={() => removeColor(color.name)}
                 />
             ))}
         </main>
