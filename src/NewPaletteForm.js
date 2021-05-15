@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
+import {Link} from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,6 +18,7 @@ import Button from "@material-ui/core/Button";
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import {arrayMove} from "react-sortable-hoc";
+import PaletteFormNav from './PaletteFormNav';
 
 const drawerWidth = 400;
 
@@ -166,55 +168,14 @@ function NewPaletteForm(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-        <AppBar
-          position="fixed"
-          color='default'
-          className={clsx(classes.appBar, {
-            [classes.appBarShift]: open,
-          })}>
-          <Toolbar >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              className={clsx(classes.menuButton, open && classes.hide)}>
-              <MenuIcon />
-            </IconButton>
-              <Typography
-                variant="h6"
-                color='inherit'
-                noWrap>
-                Persistent drawer
-              </Typography>
-              {/* 1 */}
-              {/* <ValidatorForm onSubmit={handleSubmit}>
-
-              </ValidatorForm> */}
-              <form onSubmit={handleSubmit}>
-                <input
-                    label="New Palette Name"
-                    value={newPaletteName}
-                    name="newPaletteName"
-                    onChange={handlePaletteChange}
-                    // validator={["required"]}
-                    // errorMessages={["Enter Palette Name"]}
-                    />
-                  {/* 1 */}
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
-                  // onClick={handleSubmit}
-                  >
-                  Save Palette
-                </Button>
-              </form>
-
-            <Button></Button>
-          </Toolbar>
-        </AppBar>
+    <PaletteFormNav
+      open={open}
+      classes={classes}
+      handleDrawerOpen={handleDrawerOpen}
+      handleSubmit={handleSubmit}
+      newPaletteName={newPaletteName}
+      handlePaletteChange={handlePaletteChange}
+    />
       <Drawer
         className={classes.drawer}
         variant="persistent"
