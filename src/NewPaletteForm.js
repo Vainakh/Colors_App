@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewPaletteForm(props) {
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -86,6 +87,7 @@ function NewPaletteForm(props) {
   const [colorsArray, setColorsArray] = useState(props.palettes[0].colors);
   const [newName, setNewName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
+  const [maxColor, setMaxColor] = useState(20);
 
   // useEffect(() => {
 
@@ -159,6 +161,8 @@ function NewPaletteForm(props) {
     const randomColor = allColors[rand];
     setColorsArray(colorsArray => [...colorsArray, randomColor]);
   }
+
+  const paletteIsFull = colorsArray.length >= maxColor;
 
   return (
     <div className={classes.root}>
@@ -234,6 +238,7 @@ function NewPaletteForm(props) {
               variant='contained'
               color='primary'
               onClick={() => addRandomColor()}
+              disabled={paletteIsFull}
               >
                 Random Color
               </Button>
@@ -260,8 +265,10 @@ function NewPaletteForm(props) {
             variant='contained'
             type='submit'
             color='primary'
-            style={{backgroundColor: currentColor}}
-          >Add Color
+            disabled={paletteIsFull}
+            style={{backgroundColor: paletteIsFull ? "grey" : currentColor}}
+          >
+          {paletteIsFull ? "Palette is Full" : "Add Color"}
           </Button>
         </form>
       </Drawer>
