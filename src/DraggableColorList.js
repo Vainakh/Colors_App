@@ -4,6 +4,7 @@ import DraggableColorBox from './DraggableColorBox';
 
 const DraggableColorList = ({colors, removeColor}) => {
   return (
+
     <div style={{ height: "100%"}}>
           {colors.map((color, index) => (
           <DraggableColorBox
