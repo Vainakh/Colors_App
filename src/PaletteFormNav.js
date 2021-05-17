@@ -15,7 +15,13 @@ class PaletteFormNav extends Component {
 
   }
   render() {
-    const {classes, open, handleDrawerOpen, handleSubmit, newPaletteName, handlePaletteChange} = this.props;
+    const {classes,
+      open,
+      handleDrawerOpen,
+      handleSubmit,
+      newPaletteName,
+      handlePaletteChange
+    } = this.props;
     return (
       <div>
         <CssBaseline />

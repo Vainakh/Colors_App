@@ -19,6 +19,7 @@ import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import {arrayMove} from "react-sortable-hoc";
 import PaletteFormNav from './PaletteFormNav';
+import ColorPickerForm from './ColorPickerForm';
 
 const drawerWidth = 400;
 
@@ -204,34 +205,14 @@ function NewPaletteForm(props) {
                 Random Color
               </Button>
           </div>
-        <ChromePicker
-          color={currentColor}
-          onChangeComplete={updateCurrentColor}/>
-        <form onSubmit={addNewColor}>
-          <input
-            value={newName}
-            onChange={handleNameChange}
-            // validators={[
-            //   'required',
-            //   'isColorNameUnique',
-            //   'isColorUnique'
-            //   ]}
-            // errorMessages={[
-            //   'this field is required',
-            //   'Color name must be unique',
-            //   'Color already used'
-            //   ]}
-            />
-          <Button
-            variant='contained'
-            type='submit'
-            color='primary'
-            disabled={paletteIsFull}
-            style={{backgroundColor: paletteIsFull ? "grey" : currentColor}}
-          >
-          {paletteIsFull ? "Palette is Full" : "Add Color"}
-          </Button>
-        </form>
+        <ColorPickerForm
+          paletteIsFull={paletteIsFull}
+          currentColor={currentColor}
+          updateCurrentColor={updateCurrentColor}
+          addNewColor={addNewColor}
+          newName={newName}
+          handleNameChange={handleNameChange}
+        />
       </Drawer>
       <main
         className={clsx(classes.content, {
