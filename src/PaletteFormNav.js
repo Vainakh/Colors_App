@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button";
 import {withStyles, makeStyles, useTheme} from "@material-ui/core/styles";
+import PaletteMetaForm from './PaletteMetaForm';
 
 const drawerWidth = 400;
 
@@ -53,7 +54,7 @@ class PaletteFormNav extends Component {
       handleDrawerOpen,
       handleSubmit,
       newPaletteName,
-      handlePaletteChange
+      handlePaletteChange,
     } = this.props;
 
     return (
@@ -85,7 +86,7 @@ class PaletteFormNav extends Component {
 
               </ValidatorForm> */}
           </Toolbar>
-            <div className={classes.navBtns}>
+            {/* <div className={classes.navBtns}>
               <form onSubmit={handleSubmit}>
                 <input
                   label="New Palette Name"
@@ -102,12 +103,17 @@ class PaletteFormNav extends Component {
                   >
                   Save Palette
                 </Button>
-              </form>
+              </form> */}
+              <PaletteMetaForm
+                handleSubmit={handleSubmit}
+                newPaletteName={newPaletteName}
+                handlePaletteChange={handlePaletteChange}
+              />
                 <Link to='/'>
                   <Button variant='contained' color='secondary'>Go Back</Button>
                 </Link>
-              </div>
-            <Button></Button>
+              {/* </div>
+            <Button></Button> */}
         </AppBar>
       </div>
     )
