@@ -20,7 +20,28 @@ import DraggableColorList from './DraggableColorList';
 import {arrayMove} from "react-sortable-hoc";
 import PaletteFormNav from './PaletteFormNav';
 
+const styles = () => ({
+  picker: {
+    width: '100% !important',
+    margin: 'auto'
+  },
+  addColor: {
+    width: '100%',
+    padding: '1rem',
+    marginTop: '1rem',
+    fontSize: '2rem'
+  },
+  colorNameInput: {
+    width: '100%',
+    height: '70px',
+    margin: 'normal'
+  }
+})
+
 class ColorPickerForm extends Component {
+  constructor(props) {
+    super();
+  }
 
   render() {
     const {
@@ -29,17 +50,25 @@ class ColorPickerForm extends Component {
       updateCurrentColor,
       addNewColor,
       newName,
-      handleNameChange
+      handleNameChange,
+      classes
     } = this.props;
 
     return (
-      <div>
+      <div >
         <ChromePicker
           color={currentColor}
-          onChangeComplete={updateCurrentColor}/>
-        <form onSubmit={addNewColor}>
+          onChangeComplete={updateCurrentColor}
+          className={classes.picker}
+          />
+        <form
+          className={classes.picker}
+          onSubmit={addNewColor}>
           <input
+            className={classes.colorNameInput}
             value={newName}
+            placeholder="Enter Color Name"
+            variant='filled'
             onChange={handleNameChange}
             // validators={[
             //   'required',
@@ -58,6 +87,7 @@ class ColorPickerForm extends Component {
             color='primary'
             disabled={paletteIsFull}
             style={{backgroundColor: paletteIsFull ? "grey" : currentColor}}
+            className={classes.addColor}
           >
           {paletteIsFull ? "Palette is Full" : "Add Color"}
           </Button>
@@ -67,4 +97,4 @@ class ColorPickerForm extends Component {
   }
 }
 
-export default ColorPickerForm;
+export default withStyles(styles)(ColorPickerForm);
