@@ -6,6 +6,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css'
+
 
 function PaletteMetaForm(props) {
 
@@ -24,12 +27,13 @@ function PaletteMetaForm(props) {
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}>
-        Open form dialog
+        SAVE
       </Button>
       <Dialog
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title">
+        aria-labelledby="form-dialog-title"
+        >
         <DialogTitle id="form-dialog-title">
           Choose a Palette Name
         </DialogTitle>
@@ -38,6 +42,7 @@ function PaletteMetaForm(props) {
           <DialogContentText>
             Please enter a name for your new palette
           </DialogContentText>
+          <Picker/>
             <input
               label="New Palette Name"
               value={props.newPaletteName}
