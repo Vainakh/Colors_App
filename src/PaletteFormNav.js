@@ -24,7 +24,8 @@ const styles = (theme) => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: "64px"
+    height: "64px",
+    alignItems: 'center'
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -38,7 +39,16 @@ const styles = (theme) => ({
     marginRight: theme.spacing(2),
   },
   navBtns: {
-
+    margin: '1rem',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space between'
+  },
+  button: {
+  },
+  link: {
+    textDecoration: 'none',
+    marginLeft: '10px'
   }
 })
 
@@ -86,8 +96,8 @@ class PaletteFormNav extends Component {
 
               </ValidatorForm> */}
           </Toolbar>
-            {/* <div className={classes.navBtns}>
-              <form onSubmit={handleSubmit}>
+            <div className={classes.navBtns}>
+              {/* <form onSubmit={handleSubmit}>
                 <input
                   label="New Palette Name"
                   value={newPaletteName}
@@ -109,11 +119,15 @@ class PaletteFormNav extends Component {
                 newPaletteName={newPaletteName}
                 handlePaletteChange={handlePaletteChange}
               />
-                <Link to='/'>
-                  <Button variant='contained' color='secondary'>Go Back</Button>
+                <Link to='/' className={classes.link}>
+                  <Button
+                    // className={classes.button}
+                    variant='contained'
+                    color='secondary'>Go Back</Button>
                 </Link>
-              {/* </div>
-            <Button></Button> */}
+
+              </div>
+            {/* <Button></Button> */}
         </AppBar>
       </div>
     )

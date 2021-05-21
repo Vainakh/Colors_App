@@ -20,44 +20,52 @@ function PaletteMetaForm(props) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button
+        variant="outlined"
+        color="primary"
+        onClick={handleClickOpen}>
         Open form dialog
       </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">
-          Subscribe
+          Choose a Palette Name
         </DialogTitle>
+        <form onSubmit={props.handleSubmit}>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
+            Please enter a name for your new palette
           </DialogContentText>
-          <form onSubmit={props.handleSubmit}>
-                <input
-                  label="New Palette Name"
-                  value={props.newPaletteName}
-                  name="newPaletteName"
-                  onChange={props.handlePaletteChange}
-                  // validator={["required"]}
-                  // errorMessages={["Enter Palette Name"]}
-                  />
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type='submit'
-                  >
-                  Save Palette
-                </Button>
-              </form>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
+            <input
+              label="New Palette Name"
+              value={props.newPaletteName}
+              name="newPaletteName"
+              onChange={props.handlePaletteChange}
+              fullWidth
+              margin='normal'
+              // validator={["required"]}
+              // errorMessages={["Enter Palette Name"]}
+              />
+
+            </DialogContent>
+          <DialogActions>
+          <Button
+                variant='contained'
+                color='primary'
+                type='submit'
+                >
+                Save Palette
+              </Button>
+              <Button
+                onClick={handleClose}
+                color="primary">
+                Cancel
+              </Button>
+          </DialogActions>
+
+        </form>
       </Dialog>
     </div>
   );
