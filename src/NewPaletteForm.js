@@ -156,15 +156,16 @@ function NewPaletteForm(props) {
     setColorsArray(colorsArray => ([]));
   };
 
-  const handleSubmit = () => {
-    let newName = newPaletteName;
+  const handleSubmit = (palette) => {
+    let newName = palette.paletteName.toLowerCase();
     const newPalette = {
       paletteName: newName,
-      id: newPaletteName.toLowerCase().replace(/ /g,"-"),
-      colors: colorsArray
+      id: newName.replace(/ /g,"-"),
+      colors: colorsArray,
+      emoji: palette.emoji
     }
     props.savePalette(newPalette);
-    props.history.push('/')
+    props.history.push('/');
   }
   const removeColor = (colorName) => {
     setColorsArray(
