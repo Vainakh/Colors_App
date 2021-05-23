@@ -4,6 +4,9 @@ const styles = (theme) => ({
   root: {
     dispaly: 'flex'
   },
+  hide: {
+    display: 'none',
+  },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,

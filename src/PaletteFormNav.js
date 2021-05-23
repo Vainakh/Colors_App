@@ -11,9 +11,9 @@ import Button from "@material-ui/core/Button";
 import {withStyles, makeStyles, useTheme} from "@material-ui/core/styles";
 import PaletteMetaForm from './PaletteMetaForm';
 import styles from './styles/paletteFormNavStyles';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 class PaletteFormNav extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -43,7 +43,7 @@ class PaletteFormNav extends Component {
               onClick={handleDrawerOpen}
               edge="start"
               className={clsx(classes.menuButton, open && classes.hide)}>
-              <MenuIcon />
+              <ChevronRightIcon />
             </IconButton>
               <Typography
                 variant="h6"
@@ -60,13 +60,10 @@ class PaletteFormNav extends Component {
               />
                 <Link to='/' className={classes.link}>
                   <Button
-                    // className={classes.button}
                     variant='contained'
                     color='secondary'>Go Back</Button>
                 </Link>
-
               </div>
-            {/* <Button></Button> */}
         </AppBar>
       </div>
     )
