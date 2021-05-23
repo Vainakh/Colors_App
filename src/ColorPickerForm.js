@@ -19,24 +19,7 @@ import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import DraggableColorList from './DraggableColorList';
 import {arrayMove} from "react-sortable-hoc";
 import PaletteFormNav from './PaletteFormNav';
-
-const styles = () => ({
-  picker: {
-    width: '100% !important',
-    margin: 'auto'
-  },
-  addColor: {
-    width: '100%',
-    padding: '1rem',
-    marginTop: '1rem',
-    fontSize: '2rem'
-  },
-  colorNameInput: {
-    width: '100%',
-    height: '70px',
-    margin: 'normal'
-  }
-})
+import styles from './styles/ColorPickerFormStyles';
 
 class ColorPickerForm extends Component {
   constructor(props) {
