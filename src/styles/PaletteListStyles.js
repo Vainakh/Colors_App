@@ -1,4 +1,5 @@
 import sizes from './sizes';
+import backgroundImage from './Wavey-Fingerprint.svg'
 
 export default {
   root: {
@@ -6,7 +7,11 @@ export default {
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: '#0b7',
+    overflow: 'scroll',
+    backgroundImage: `url(${backgroundImage})`,
+    /* background by SVGBackgrounds.com */
   },
   container: {
     width: "50%",
@@ -42,5 +47,8 @@ export default {
       gridTemplateColumns: "repeat(1, 100%)",
       gridGap: "1rem"
     }
+  },
+  heading: {
+    fontSize: '2rem'
   }
 }
