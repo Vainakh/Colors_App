@@ -1,8 +1,10 @@
+import sizes from './sizes';
+
 const drawerWidth = 400;
 
 const styles = (theme) => ({
   root: {
-    dispaly: 'flex'
+    display: 'flex'
   },
   hide: {
     display: 'none',
@@ -32,7 +34,10 @@ const styles = (theme) => ({
     margin: '1rem',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space between'
+    justifyContent: 'space between',
+    [sizes.down('xs')] : {
+      fontWeight: 700
+    },
   },
   button: {
   },
