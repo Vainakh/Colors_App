@@ -12,7 +12,6 @@ import 'emoji-mart/css/emoji-mart.css';
 
 function PaletteMetaForm(props) {
 
-  // const [open, setOpen] = useState(false);
   const [stage, setStage] = useState('');
 
   const handleClickOpen = () => {

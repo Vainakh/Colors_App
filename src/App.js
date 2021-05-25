@@ -28,6 +28,7 @@ class App extends Component {
     )}),
     this.syncLocalStorage
     )
+    console.log('clicked')
   };
   savePalette(newPalette) {
     this.setState({
