@@ -32,7 +32,7 @@ function PaletteMetaForm(props) {
       paletteName: props.newPaletteName,
       emoji: emoji.native
     });
-    this.setStage('');
+    // this.setStage('');
   };
 
   return (
