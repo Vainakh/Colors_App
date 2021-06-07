@@ -1,24 +1,17 @@
 import React, {useState} from 'react';
+import { Picker } from 'emoji-mart';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 
-
 function PaletteMetaForm(props) {
-
   const [stage, setStage] = useState('');
-
   const handleClickOpen = () => {
     setStage('form');
-  };
-  const handleClose = () => {
-    setStage('emoji');
   };
   const handleCancel = () => {
     setStage('');
@@ -32,7 +25,6 @@ function PaletteMetaForm(props) {
       paletteName: props.newPaletteName,
       emoji: emoji.native
     });
-    // this.setStage('');
   };
 
   return (
@@ -69,7 +61,6 @@ function PaletteMetaForm(props) {
           <DialogContentText>
             Please enter a name for your new palette
           </DialogContentText>
-          {/* <Picker/> */}
             <input
               label="New Palette Name"
               value={props.newPaletteName}
@@ -77,10 +68,7 @@ function PaletteMetaForm(props) {
               onChange={props.handlePaletteChange}
               fullWidth
               margin='normal'
-              // validator={["required"]}
-              // errorMessages={["Enter Palette Name"]}
               />
-
             </DialogContent>
           <DialogActions>
           <Button

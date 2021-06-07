@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import Palette from './Palette';
-import seedColors from './seedColors';
+import {TransitionGroup, CSSTransition} from 'react-transition-group';
 import {generatePalette} from './ColorHelpers';
 import {Route, Switch, withRouter} from 'react-router-dom';
+import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
-import {TransitionGroup, CSSTransition} from 'react-transition-group';
+import seedColors from './seedColors';
+
 import Page from './Page';
 
 class App extends Component {
@@ -30,7 +31,6 @@ class App extends Component {
     )}),
     this.syncLocalStorage
     )
-    console.log('clicked')
   };
   savePalette(newPalette) {
     this.setState({

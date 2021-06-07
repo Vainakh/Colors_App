@@ -33,7 +33,7 @@ export default {
     margin: "0 10px",
     display: "inline-block",
   },
-  [sizes.down('md')] : {
+  [sizes.down('sm')] : {
     width: '150px'
   }
 }
